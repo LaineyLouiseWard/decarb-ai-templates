@@ -1,0 +1,17 @@
+# Decarb-AI figure style for matplotlib: plt.style.use("decarb.mplstyle")
+axes.prop_cycle: cycler("color", ["4366AE", "5D9223", "8050A0", "D66919", "008DB8", "AF3C3A"])
+axes.edgecolor: 46536A
+axes.labelcolor: 1A1A1A
+axes.spines.top: False
+axes.spines.right: False
+axes.grid: True
+grid.color: D9DEE6
+grid.linewidth: 0.6
+lines.linewidth: 2
+xtick.color: 46536A
+ytick.color: 46536A
+legend.frameon: False
+font.family: sans-serif
+figure.dpi: 150
+savefig.dpi: 300
+savefig.bbox: tight

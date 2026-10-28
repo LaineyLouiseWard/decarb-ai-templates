@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200">
+  <rect x="1" y="1" width="398" height="198" rx="6" fill="#F5F7FA" stroke="#C5CCD6" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="200" y="96" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#8A94A3">Your figure</text>
+  <text x="200" y="122" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#A3ABB7">PNG or SVG in figures/</text>
+</svg>

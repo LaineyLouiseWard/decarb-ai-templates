@@ -1,0 +1,213 @@
+/* Decarb-AI poster style. Put your content in poster.html; change this file only to restyle every poster.
+   Sizes use --u: 1 mm on paper, 0.75 px on screen, so the screen view is a scaled copy of the A0 page. */
+
+@font-face { font-family: "Latin Modern Roman"; src: url("fonts/lmroman10-regular.otf"); }
+@font-face { font-family: "Latin Modern Roman"; src: url("fonts/lmroman10-bold.otf"); font-weight: bold; }
+@font-face { font-family: "Latin Modern Roman"; src: url("fonts/lmroman10-italic.otf"); font-style: italic; }
+@font-face { font-family: "Latin Modern Roman"; src: url("fonts/lmroman10-bolditalic.otf"); font-weight: bold; font-style: italic; }
+@font-face { font-family: "Latin Modern Sans"; src: url("fonts/lmsans10-regular.otf"); }
+@font-face { font-family: "Latin Modern Sans"; src: url("fonts/lmsans10-bold.otf"); font-weight: bold; }
+@font-face { font-family: "Latin Modern Sans DemiCond"; src: url("fonts/lmsansdemicond10-regular.otf"); }
+
+@page { size: 841mm 1189mm; margin: 0; }
+
+:root {
+  /* Brand (see PALETTE.md) */
+  --decarb-blue: #4366AE;
+  --decarb-cyan: #38BBEC;
+  --decarb-green: #82C046;
+  --slate: #46536A;
+  --slate-deep: #333D4F;
+  --slate-soft: #D9DEE6;
+
+  /* Two emphasis colours for key words in your text; both read on white at small sizes */
+  --emphasis-1: #AF3C3A;
+  --emphasis-2: #4366AE;
+
+  /* Text and surfaces */
+  --ink: #1A1A1A;
+  --ink-soft: #555555;
+  --page: #F2F3F5;
+  --card: #FFFFFF;
+  --line: #D8D8D8;
+
+  /* Type */
+  --serif: "Latin Modern Roman", Georgia, serif;
+  --sans: "Latin Modern Sans", "Helvetica Neue", Arial, sans-serif;
+  --head: "Latin Modern Sans DemiCond", "Latin Modern Sans", sans-serif;
+
+  --u: 0.75px;
+  --text: calc(11 * var(--u));
+  --small: calc(10 * var(--u));
+  --lead: calc(14 * var(--u));
+  --h2: calc(17 * var(--u));
+  --h1: calc(24 * var(--u));
+  --gap: calc(9 * var(--u));
+  --radius: calc(5 * var(--u));
+}
+
+@media print {
+  :root { --u: 1mm; }
+  body { background: none; }
+  .poster { margin: 0; box-shadow: none; }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+body { background: #2B2B2B; font-family: var(--serif); color: var(--ink); }
+
+.poster {
+  width: calc(841 * var(--u));
+  height: calc(1189 * var(--u));
+  margin: 20px auto;
+  padding: calc(10 * var(--u)) calc(12 * var(--u));
+  background: var(--page);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  overflow: hidden;
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.5);
+}
+
+/* ---------- Header: brand gradient, white sweep behind the logos ---------- */
+.poster > header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(12 * var(--u));
+  padding: calc(8 * var(--u)) calc(16 * var(--u));
+  border-radius: var(--radius);
+  background: linear-gradient(100deg, var(--decarb-blue) 0%, var(--decarb-cyan) 52%, var(--decarb-green) 100%);
+  color: #FFFFFF;
+  overflow: hidden;
+}
+.poster > header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 140' preserveAspectRatio='none'%3E%3Cpath d='M800,10 L650,10 C596,10 576,44 554,82 C534,116 512,140 468,140 L800,140 Z' fill='white'/%3E%3C/svg%3E") no-repeat right / 100% 100%;
+}
+.poster > header > * { position: relative; }
+.poster > header h1 {
+  font-family: var(--head);
+  font-weight: normal;
+  font-size: var(--h1);
+  line-height: 1.08;
+  text-wrap: balance;
+}
+.authors { font-family: var(--sans); font-size: calc(15 * var(--u)); margin-top: calc(4 * var(--u)); }
+.affiliations { font-family: var(--sans); font-size: var(--small); color: var(--slate-soft); margin-top: calc(2 * var(--u)); }
+.logos { display: flex; align-items: center; gap: calc(12 * var(--u)); flex: none; }
+.logos .stack { display: flex; flex-direction: column; gap: calc(6 * var(--u)); }
+.logos .stack img { width: calc(96 * var(--u)); }
+.logos img { display: block; height: auto; width: calc(24 * var(--u)); }
+.logos img.qr { width: calc(50 * var(--u)); border-radius: calc(2 * var(--u)); }
+
+/* ---------- Layout: rows of cards ---------- */
+.poster > main { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: var(--gap); }
+.row { display: flex; gap: var(--gap); }
+.row.grow { flex: 1; min-height: 0; }
+.row > * { flex: var(--w, 1); min-width: 0; }
+
+/* ---------- Card with its section tab ---------- */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: calc(5 * var(--u));
+  padding: 0 calc(12 * var(--u)) calc(9 * var(--u));
+  background: var(--card);
+  border: calc(0.6 * var(--u)) solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 calc(2 * var(--u)) calc(6 * var(--u)) rgba(51, 61, 79, 0.08);
+}
+.card > h2 { display: flex; margin: 0 calc(-12 * var(--u)) calc(2 * var(--u)); font-weight: normal; }
+.card > h2 > span {
+  height: calc(24 * var(--u));
+  padding: calc(4 * var(--u)) calc(44 * var(--u)) 0 calc(10 * var(--u));
+  border-top-left-radius: var(--radius);
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 90 44' preserveAspectRatio='none'%3E%3Cpath d='M0,0 L90,0 L90,5.5 C60,5.5 35,44 0,44 Z' fill='%234366AE'/%3E%3C/svg%3E") no-repeat right top / calc(46 * var(--u)) 100%,
+    linear-gradient(var(--decarb-blue), var(--decarb-blue)) no-repeat left top / calc(100% - calc(45 * var(--u))) 100%;
+  font-family: var(--head);
+  font-size: var(--h2);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+  white-space: nowrap;
+}
+.card > h2::after {
+  content: "";
+  flex: 1;
+  height: calc(3 * var(--u));
+  margin-left: -1px;
+  background: linear-gradient(90deg, var(--decarb-blue), var(--decarb-cyan));
+  border-top-right-radius: var(--radius);
+}
+.card p, .card li { font-size: var(--text); line-height: 1.38; }
+.card ul { padding-left: calc(16 * var(--u)); }
+.card li + li { margin-top: calc(2.5 * var(--u)); }
+.card strong { color: var(--slate-deep); }
+
+/* A filled card for the conclusions */
+.card.filled { background: var(--decarb-blue); border-color: var(--decarb-blue); color: #FFFFFF; }
+.card.filled > h2 > span {
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 90 44' preserveAspectRatio='none'%3E%3Cpath d='M0,0 L90,0 L90,5.5 C60,5.5 35,44 0,44 Z' fill='%23333D4F'/%3E%3C/svg%3E") no-repeat right top / calc(46 * var(--u)) 100%,
+    linear-gradient(var(--slate-deep), var(--slate-deep)) no-repeat left top / calc(100% - calc(45 * var(--u))) 100%;
+}
+.card.filled > h2::after { background: var(--slate-deep); }
+.card.filled p, .card.filled li { font-family: var(--sans); font-size: var(--lead); font-weight: bold; }
+.card.filled strong { color: #FFFFFF; }
+
+/* ---------- Text pieces ---------- */
+.question { font-size: var(--lead); font-style: italic; line-height: 1.35; color: var(--slate-deep); }
+.em-1 { color: var(--emphasis-1); font-weight: bold; }
+.em-2 { color: var(--emphasis-2); font-weight: bold; }
+.references p { font-family: var(--sans); font-size: var(--small); line-height: 1.35; padding-left: 1.4em; text-indent: -1.4em; }
+
+/* ---------- Figures ---------- */
+.figures { display: grid; grid-template-columns: repeat(var(--cols, 2), 1fr); gap: calc(14 * var(--u)); align-items: start; }
+figure { min-width: 0; }
+figure img { display: block; width: 100%; border-radius: calc(3 * var(--u)); background: #FFFFFF; }
+figcaption { margin-top: calc(3 * var(--u)); font-family: var(--sans); font-size: var(--small); line-height: 1.3; color: var(--ink-soft); }
+figcaption strong { color: var(--ink); }
+
+/* ---------- Numbered steps ---------- */
+.steps { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: var(--gap); list-style: none; counter-reset: step; padding: 0; }
+.card .steps li { margin: 0; }
+.steps li {
+  counter-increment: step;
+  padding: calc(4 * var(--u)) calc(7 * var(--u));
+  border: calc(0.8 * var(--u)) solid var(--slate-soft);
+  border-radius: var(--radius);
+  background: #FAFAFB;
+  font-family: var(--sans);
+  font-size: var(--small);
+  line-height: 1.3;
+  color: var(--ink-soft);
+}
+.steps li::before {
+  content: counter(step);
+  float: left;
+  display: grid;
+  place-items: center;
+  width: calc(11 * var(--u));
+  height: calc(11 * var(--u));
+  margin: calc(0.5 * var(--u)) calc(4 * var(--u)) 0 0;
+  border-radius: 50%;
+  background: var(--decarb-blue);
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+/* ---------- Callout: one sentence the reader should leave with ---------- */
+.callout {
+  padding: calc(6 * var(--u)) calc(10 * var(--u));
+  border-left: calc(4 * var(--u)) solid var(--decarb-blue);
+  border-radius: calc(3 * var(--u));
+  background: #E8EEF8;
+  font-family: var(--sans);
+  font-size: var(--lead);
+  line-height: 1.3;
+}

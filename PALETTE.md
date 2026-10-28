@@ -1,73 +1,41 @@
-# Decarb-AI poster/slide palette
+# Decarb-AI colours
 
-One coherent palette for Decarb-AI materials. Three roles keep it from getting
-muddy: **brand** (identity), **structure** (neutral slate), and **hazard**
-(semantic accents, used only for their meaning). Brand blue/cyan/green are
-sampled from the official `bg-title.png` swoosh, so they match the slide deck.
+![Decarb-AI colours](palette_swatch.png)
 
-## Brand core (identity — headers, tabs, sweeps)
+**Brand.** For headers, section tabs and the gradient. Cyan and green are too pale for text or thin lines on white.
 
-| Role | Hex | Token | Where |
-|------|-----|-------|-------|
-| Brand blue | `#4366AE` | `--brand-blue` | header start, section tabs, rule start |
-| Brand cyan | `#38BBEC` | `--brand-cyan` | header middle, rule fade |
-| Brand green | `#82C046` | `--brand-green` | header end |
-| Brand sky | `#55CBF2` | `--brand-sky` | light cyan tint for gradients |
+| | Hex |
+|---|---|
+| Blue | `#4366AE` |
+| Cyan | `#38BBEC` |
+| Green | `#82C046` |
 
-## Structure (neutral — bars, borders, dark UI)
+The gradient runs blue, cyan, green: `linear-gradient(100deg, #4366AE, #38BBEC 52%, #82C046)`.
 
-| Role | Hex | Token |
-|------|-----|-------|
-| Slate | `#46536A` | `--accent` |
-| Slate deep | `#333D4F` | `--accent-deep` |
-| Slate light | `#ECEFF3` | `--accent-light` |
-| Slate soft | `#D9DEE6` | `--accent-soft` |
+**Neutrals.** Slate `#46536A` and deep slate `#333D4F` for structure, light slate `#D9DEE6` for borders and grid
+lines, `#1A1A1A` for text, `#F2F3F5` for the poster background.
 
-## Hazard accents (semantic only — never decorative)
+**Chart colours.** For lines, bars and points in figures, used in this order. They keep the brand hues, darkened
+until each reads on white, plus three warm colours to tell series apart. The order keeps neighbouring colours
+distinct for colour-blind readers too.
 
-Muted to sit beside Figure 1's academic palette, unlike the vivid brand. Both
-pass AA (≥4.5:1) on white for bold keyword text. Drought stays a red.
+| | Hex | Also fine for coloured text |
+|---|---|---|
+| 1 Blue | `#4366AE` | yes |
+| 2 Green | `#5D9223` | no |
+| 3 Purple | `#8050A0` | yes |
+| 4 Orange | `#D66919` | no |
+| 5 Cyan | `#008DB8` | no |
+| 6 Red | `#AF3C3A` | yes |
 
-| Role | Hex | Token | Meaning |
-|------|-----|-------|---------|
-| Drought red | `#A24438` | `--drought` | drought emphasis (dusty red, 6.1:1) |
-| Drought soft | `#F4E4E1` | `--drought-soft` | drought fill |
-| Flood blue | `#3A6E99` | `--flood` | flood emphasis (steel blue, 5.4:1) |
-| Flood soft | `#E5EDF3` | `--flood-soft` | flood fill |
+Use one colour per series and keep the order, so series 1 is always blue. More than six series is a sign to group
+them or split the figure.
 
-## Neutrals
+**Blue ramp.** For maps and heat maps where colour shows an amount, light to dark:
+`#D0DFF9` `#A3BEF2` `#779AE0` `#5178C7` `#355AA6` `#223F7C`.
 
-| Role | Hex | Token |
-|------|-----|-------|
-| Text primary | `#1A1A1A` | `--text-primary` |
-| Text secondary | `#555555` | `--text-secondary` |
-| Text muted | `#888888` | `--text-muted` |
-| White / inverse | `#FFFFFF` | `--text-inverse` |
-| Page background | `#F2F3F5` | `--bg-page` |
-| Card | `#FFFFFF` | `--bg-card` |
-| Border soft | `#D8D8D8` | `--border-soft` |
+## In your tools
 
-## Drop-in CSS
-
-```css
-:root {
-  /* brand */
-  --brand-blue:  #4366AE;
-  --brand-cyan:  #38BBEC;
-  --brand-green: #82C046;
-  --brand-sky:   #55CBF2;
-  /* structure */
-  --accent:       #46536A;
-  --accent-deep:  #333D4F;
-  --accent-light: #ECEFF3;
-  --accent-soft:  #D9DEE6;
-  /* hazard (semantic) */
-  --gold: #C2601D;  --gold-soft:  #F9EDE1;
-  --flood: #4C7FB5; --flood-soft: #E5EEF6;
-  /* neutral */
-  --text-primary: #1A1A1A; --text-secondary: #555555; --text-muted: #888888;
-  --bg-page: #F2F3F5; --bg-card: #FFFFFF; --border-soft: #D8D8D8;
-}
-```
-
-The signature sweep is `linear-gradient(100deg, blue 0%, cyan 52%, green 100%)`.
+- **Poster:** already set in `poster/decarb.css`.
+- **Slides:** `decarbchart1` to `decarbchart6` in the Beamer theme.
+- **matplotlib:** `plt.style.use("decarb.mplstyle")` sets the chart colours in order.
