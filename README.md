@@ -2,7 +2,7 @@
 
 Slides and a poster in the Decarb-AI style, ready for your own research.
 
-| Slides | Poster | A finished poster |
+| Slides | Poster | Example poster |
 |:---:|:---:|:---:|
 | <img src="docs/example-title.png" width="300" alt="Title slide"> | <img src="docs/poster-template.png" width="170" alt="Poster template"> | <img src="docs/example-ems2026.png" width="170" alt="EMS 2026 poster made with the template"> |
 
